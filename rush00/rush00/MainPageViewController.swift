@@ -66,7 +66,33 @@ class MainPageViewController: UIViewController {
     }
     
     func handleError(_ error: NSError) {
-        print("Error while getting topics")
+        let alert = UIAlertController(title: "Error", message: "code: \(error.code)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func deleteTopic(id:String) {
+        let token = UserDefaults.standard.value(forKey: "access_token") as! String
+        let url = "https://api.intra.42.fr/v2/topics/6.json?access_key=\(token)"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "DELETE"
+        let dictionary = ["id":id]
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: dictionary, options: []) else {
+            return
+        }
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = httpBody
+        URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
+            guard let `self` = self else { return }
+            if error != nil {
+                self.handleError(error! as NSError)
+                return
+            }
+            
+//            guard let data = data else { return }
+//            let dictinary = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
+//            self.convertResponse(response: dictinary)
+        }).resume()
     }
 
 
