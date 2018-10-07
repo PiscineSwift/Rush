@@ -24,8 +24,6 @@ class MainPageViewController: UIViewController {
         }
     }
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadTopics()
@@ -34,8 +32,8 @@ class MainPageViewController: UIViewController {
     }
     
     func loadTopics() {
-        print("here")
         let token = UserDefaults.standard.value(forKey: "access_token") as! String
+        print(token)
         let url = "https://api.intra.42.fr/v2/topics.json?access_token=\(token)"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
@@ -47,19 +45,19 @@ class MainPageViewController: UIViewController {
             }
             guard let data = data else { return }
             let dictinary = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
-            print(dictinary)
             self.convertResponse(response: dictinary)
         }).resume()
         
     }
     
     func convertResponse(response statuses: [[String: Any]]) {
-        print("here2")
         for status in statuses {
             if let author = status["author"] as? [String: Any] {
                 if let message = status["message"] as? [String: Any] {
                     if let content = message["content"] as? [String: Any] {
-                        let topic = Topic(topicId: status["id"] as! Int, usrId: author["id"] as! Int, username: author["login"] as! String, title: status["name"] as! String, text: content["markdown"] as! String, time: status["created_at"] as! String)
+                        var formattedTime = (status["created_at"] as! String).components(separatedBy: "T")
+                        
+                        let topic = Topic(topicId: status["id"] as! Int, usrId: author["id"] as! Int, username: author["login"] as! String, title: status["name"] as! String, text: content["markdown"] as! String, time: formattedTime[0])
                         topics.append(topic)
                     }
                 }
@@ -92,7 +90,6 @@ class MainPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "TopicDetailsViewController") {
             if let vc = segue.destination as? TopicDetailsViewController {
-                print(topics[currentRow])
                 vc.topic = topics[currentRow]
             }
         }
