@@ -39,6 +39,8 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadTopics()
+        
+        navigationItem.title = "Forum"
     }
     
     func loadTopics() {

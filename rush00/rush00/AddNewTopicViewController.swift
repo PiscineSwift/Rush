@@ -13,7 +13,7 @@ class AddNewTopicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        navigationItem.title = "New Topic"
     }
 
 }
