@@ -13,6 +13,10 @@
 		1D47E2AF2167E81A0001B112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D47E2AD2167E81A0001B112 /* LaunchScreen.storyboard */; };
 		1D4E93BA216A4D9400E09470 /* TopicDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4E93B9216A4D9400E09470 /* TopicDetailsViewController.swift */; };
 		1D4E93BC216A4EE500E09470 /* AddNewTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4E93BB216A4EE500E09470 /* AddNewTopicViewController.swift */; };
+		1D4E93C1216A60A100E09470 /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4E93BF216A60A100E09470 /* TopicTableViewCell.swift */; };
+		1D4E93C2216A60A100E09470 /* TopicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E93C0216A60A100E09470 /* TopicTableViewCell.xib */; };
+		1D4E93C6216A60CB00E09470 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4E93C4216A60CB00E09470 /* MessageTableViewCell.swift */; };
+		1D4E93C7216A60CB00E09470 /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4E93C5216A60CB00E09470 /* MessageTableViewCell.xib */; };
 		1DCA09FF2169136D003C2DA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA09FE2169136D003C2DA1 /* NetworkManager.swift */; };
 		1DCA0A0121691510003C2DA1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCA0A0021691510003C2DA1 /* LoginViewController.swift */; };
 		E92E4BEA216A0BCC00CE799C /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E4BE9216A0BCC00CE799C /* MainPageViewController.swift */; };
@@ -29,6 +33,10 @@
 		1D47E2B02167E81A0001B112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4E93B9216A4D9400E09470 /* TopicDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicDetailsViewController.swift; sourceTree = "<group>"; };
 		1D4E93BB216A4EE500E09470 /* AddNewTopicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTopicViewController.swift; sourceTree = "<group>"; };
+		1D4E93BF216A60A100E09470 /* TopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
+		1D4E93C0216A60A100E09470 /* TopicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopicTableViewCell.xib; sourceTree = "<group>"; };
+		1D4E93C4216A60CB00E09470 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		1D4E93C5216A60CB00E09470 /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		1DCA09FE2169136D003C2DA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1DCA0A0021691510003C2DA1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E92E4BE9216A0BCC00CE799C /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -67,11 +75,11 @@
 			isa = PBXGroup;
 			children = (
 				1D47E2A42167E81A0001B112 /* AppDelegate.swift */,
+				1D4E93BD216A601400E09470 /* TopicDetail */,
 				1DCA09FD21691363003C2DA1 /* Network */,
 				1DCA0A0021691510003C2DA1 /* LoginViewController.swift */,
 				E92E4BEB216A0BFC00CE799C /* Model.swift */,
 				E92E4BE9216A0BCC00CE799C /* MainPageViewController.swift */,
-				1D4E93B9216A4D9400E09470 /* TopicDetailsViewController.swift */,
 				1D4E93BB216A4EE500E09470 /* AddNewTopicViewController.swift */,
 				E92E4BEF216A3F6100CE799C /* topicViewCell.swift */,
 				1D47E2A82167E81A0001B112 /* Main.storyboard */,
@@ -88,6 +96,26 @@
 				1D47E2B02167E81A0001B112 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1D4E93BD216A601400E09470 /* TopicDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1D4E93BE216A607A00E09470 /* Cells&Xibs */,
+				1D4E93B9216A4D9400E09470 /* TopicDetailsViewController.swift */,
+			);
+			path = TopicDetail;
+			sourceTree = "<group>";
+		};
+		1D4E93BE216A607A00E09470 /* Cells&Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				1D4E93BF216A60A100E09470 /* TopicTableViewCell.swift */,
+				1D4E93C0216A60A100E09470 /* TopicTableViewCell.xib */,
+				1D4E93C4216A60CB00E09470 /* MessageTableViewCell.swift */,
+				1D4E93C5216A60CB00E09470 /* MessageTableViewCell.xib */,
+			);
+			path = "Cells&Xibs";
 			sourceTree = "<group>";
 		};
 		1DCA09FD21691363003C2DA1 /* Network */ = {
@@ -158,6 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D47E2AF2167E81A0001B112 /* LaunchScreen.storyboard in Resources */,
+				1D4E93C2216A60A100E09470 /* TopicTableViewCell.xib in Resources */,
+				1D4E93C7216A60CB00E09470 /* MessageTableViewCell.xib in Resources */,
 				1D47E2AC2167E81A0001B112 /* Assets.xcassets in Resources */,
 				1D47E2AA2167E81A0001B112 /* Main.storyboard in Resources */,
 			);
@@ -173,10 +203,12 @@
 				E92E4BEA216A0BCC00CE799C /* MainPageViewController.swift in Sources */,
 				1DCA0A0121691510003C2DA1 /* LoginViewController.swift in Sources */,
 				1DCA09FF2169136D003C2DA1 /* NetworkManager.swift in Sources */,
+				1D4E93C6216A60CB00E09470 /* MessageTableViewCell.swift in Sources */,
 				1D4E93BC216A4EE500E09470 /* AddNewTopicViewController.swift in Sources */,
 				1D4E93BA216A4D9400E09470 /* TopicDetailsViewController.swift in Sources */,
 				E92E4BEC216A0BFC00CE799C /* Model.swift in Sources */,
 				E92E4BF0216A3F6100CE799C /* topicViewCell.swift in Sources */,
+				1D4E93C1216A60A100E09470 /* TopicTableViewCell.swift in Sources */,
 				1D47E2A52167E81A0001B112 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

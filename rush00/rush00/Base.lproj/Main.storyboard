@@ -146,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QT0-LD-Hdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4132" y="-253"/>
+            <point key="canvasLocation" x="3982" y="-520"/>
         </scene>
         <!--Topic Details View Controller-->
         <scene sceneID="GRX-Ue-wT3">
@@ -155,13 +155,32 @@
                     <view key="view" contentMode="scaleToFill" id="Pmg-Pl-uwR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="idU-gV-0uJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dE8-37-ciG" id="MOu-DQ-2S4"/>
+                                    <outlet property="delegate" destination="dE8-37-ciG" id="6jr-u9-g6T"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="idU-gV-0uJ" firstAttribute="top" secondItem="qVl-0h-FR3" secondAttribute="top" id="9Zd-0t-1kx"/>
+                            <constraint firstItem="idU-gV-0uJ" firstAttribute="leading" secondItem="qVl-0h-FR3" secondAttribute="leading" id="EJV-Dl-VcV"/>
+                            <constraint firstItem="qVl-0h-FR3" firstAttribute="trailing" secondItem="idU-gV-0uJ" secondAttribute="trailing" id="Jx0-Cr-taK"/>
+                            <constraint firstItem="qVl-0h-FR3" firstAttribute="bottom" secondItem="idU-gV-0uJ" secondAttribute="bottom" id="gYk-pz-KN7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qVl-0h-FR3"/>
                     </view>
+                    <connections>
+                        <outlet property="topicTableView" destination="idU-gV-0uJ" id="StL-Oc-tAZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2f-7A-mlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4145" y="433"/>
+            <point key="canvasLocation" x="3982" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R6D-Pu-IJg">

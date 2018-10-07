@@ -11,7 +11,7 @@ import Foundation
 protocol NetworkService {
     
     func getAccessToken(_ completion: @escaping (_ accessToken: String?, _ errorMessage: String?) -> Void)
-    
+    func messages(byTopicId topicId: Int, completion: @escaping ([Message]) -> Void)
 }
 
 final class NetworkManager: NetworkService {
@@ -45,6 +45,34 @@ final class NetworkManager: NetworkService {
             }
         }
         task.resume()
+    }
+    
+    func messages(byTopicId topicId: Int, completion: @escaping ([Message]) -> Void) {
+        let token = UserDefaults.standard.value(forKey: "access_token") as! String
+        let url = "https://api.intra.42.fr/v2/topics/\(topicId)/messages?access_token=\(token)"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+            guard let `self` = self else { return }
+            if error != nil {
+                print(error)
+            }
+            guard let data = data else { return }
+            let responseData = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
+            var messages: [Message] = []
+            for messageContainer in responseData {
+                if let author = messageContainer["author"] as? [String: Any] {
+                    if let content = messageContainer["content"] as? String {
+                        if let time = messageContainer["created_at"] as? String {
+                            let formattedTime = time.components(separatedBy: "T")
+                            let message = Message(usrId: author["id"] as! Int, username: author["login"] as! String, text: content, time: formattedTime[0])
+                            messages.append(message)
+                        }
+                    }
+                }
+            }
+            completion(messages)
+        }.resume()
     }
     
     
