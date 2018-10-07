@@ -34,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let queryItems = components.queryItems {
             queryItems.forEach( { response[$0.name] = $0.value } )
         }
-        if let _ = response["code"] {
+        if let code = response["code"] as? String {
             UserDefaults.standard.set(true, forKey: "isLogin") // Set it to false when user logout
-            
+            UserDefaults.standard.set(code, forKey: "userToken")
             window?.rootViewController?.dismiss(animated: true, completion: nil)
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
             let mainViewController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
