@@ -9,9 +9,11 @@
 import UIKit
 import Foundation
 
-class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainPageViewController: UIViewController {
     
     @IBOutlet weak var topicsTableView: UITableView!
+    
+    var currentRow: Int!
     
     var topics : [Topic] = [] {
         willSet {
@@ -22,19 +24,7 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath) as! topicViewCell
-        
-        cell.usernameLabel.text = topics[indexPath.row].username
-        cell.timeLabel.text = topics[indexPath.row].time
-        cell.topicTextLabel.text = topics[indexPath.row].title
-        
-        return cell
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +39,6 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         let url = "https://api.intra.42.fr/v2/topics.json?access_token=\(token)"
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
-//        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
             guard let `self` = self else { return }
             if error != nil {
@@ -60,13 +49,6 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
             let dictinary = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
             print(dictinary)
             self.convertResponse(response: dictinary)
-            
-//            if let statuses = response.value(forKey: "statuses") as? [[String: Any]] {
-//                self.convertResponse(response: statuses)
-//            } else {
-//                guard let error = error else { return }
-//                self.handleError(error as NSError)
-//            }
         }).resume()
         
     }
@@ -107,39 +89,39 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         UIApplication.shared.windows[0].rootViewController = loginViewController
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "TopicDetailsViewController") {
+            if let vc = segue.destination as? TopicDetailsViewController {
+                print(topics[currentRow])
+                vc.topic = topics[currentRow]
+            }
+        }
+    }
 }
-//private func convertResponse(response statuses: [[String: Any]]) -> [Tweet] {
-//    var tweets: [Tweet] = []
-//    for status in statuses {
-//        if let user = status["user"] as? [String: Any] {
-//            let tweet = Tweet(name: user["name"] as! String, text: status["text"] as! String, time: status["created_at"] as! String)
-//            tweets.append(tweet)
-//        }
-//    }
-//    return tweets
-//}
 
-//private func request(with query: String, count: Int = 100) {
-//    let stringURL = "https://api.twitter.com/1.1/search/tweets.json?"
-//    let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-//    let url = stringURL + "q=\(encodedQuery)&lang=en&count=\(count)"
-//    var request = URLRequest(url: URL(string: url)!)
-//    request.httpMethod = "GET"
-//    request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
-//    URLSession.shared.dataTask(with: request, completionHandler: { [weak self] data, response, error in
-//        guard let `self` = self else { return }
-//        if error != nil {
-//            self.delegate?.handleError(error! as NSError)
-//            return
-//        }
-//        guard let data = data else { return }
-//        let response = try! JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-//        if let statuses = response.value(forKey: "statuses") as? [[String: Any]] {
-//            let tweets = self.convertResponse(response: statuses)
-//            self.delegate?.processTweets(tweets)
-//        } else {
-//            guard let error = error else { return }
-//            self.delegate?.handleError(error as NSError)
-//        }
-//    }).resume()
+extension MainPageViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return topics.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "topicCell", for: indexPath) as! topicViewCell
+        
+        cell.usernameLabel.text = topics[indexPath.row].username
+        cell.timeLabel.text = topics[indexPath.row].time
+        cell.topicTextLabel.text = topics[indexPath.row].title
+        
+        return cell
+    }
+    
+}
 
+extension MainPageViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentRow = indexPath.row
+        performSegue(withIdentifier: "TopicDetailsViewController", sender: self)
+    }
+    
+}
