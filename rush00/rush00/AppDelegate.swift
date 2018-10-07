@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         network.getAccessToken {  [weak self] _, errorMessage in
             if let error = errorMessage { self?.showAlert(withMessage: error) }
         }
-        
         return true
     }
     
@@ -43,11 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = viewController
         } else if let error = response["error"] {
             UserDefaults.standard.set(false, forKey: "isLogin") // Just in case
-            
             window?.rootViewController?.dismiss(animated: true, completion: nil)
             showAlert(withMessage: error)
         }
-        
         return true
     }
     
