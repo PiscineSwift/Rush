@@ -96,6 +96,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PCb-E3-xfu" id="gpg-nL-XbN"/>
+                                    <outlet property="delegate" destination="PCb-E3-xfu" id="Yf9-f8-tjP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

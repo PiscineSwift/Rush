@@ -42,9 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let viewController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
             window?.rootViewController = viewController
         } else if let error = response["error"] {
-            showAlert(withMessage: error)
             UserDefaults.standard.set(false, forKey: "isLogin") // Just in case
-            self.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            
+            window?.rootViewController?.dismiss(animated: true, completion: nil)
+            showAlert(withMessage: error)
         }
         
         return true
