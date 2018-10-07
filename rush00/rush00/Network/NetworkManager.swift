@@ -58,15 +58,17 @@ final class NetworkManager: NetworkService {
                 print(error)
             }
             guard let data = data else { return }
-            let responseData = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
+            let responseData = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]?]
             var messages: [Message] = []
             for messageContainer in responseData {
-                if let author = messageContainer["author"] as? [String: Any] {
-                    if let content = messageContainer["content"] as? String {
-                        if let time = messageContainer["created_at"] as? String {
-                            let formattedTime = time.components(separatedBy: "T")
-                            let message = Message(usrId: author["id"] as! Int, username: author["login"] as! String, text: content, time: formattedTime[0])
-                            messages.append(message)
+                if let messageContainer = messageContainer as? [String: Any] {
+                    if let author = messageContainer["author"] as? [String: Any] {
+                        if let content = messageContainer["content"] as? String {
+                            if let time = messageContainer["created_at"] as? String {
+                                let formattedTime = time.components(separatedBy: "T")
+                                let message = Message(usrId: author["id"] as! Int, username: author["login"] as! String, text: content, time: formattedTime[0])
+                                messages.append(message)
+                            }
                         }
                     }
                 }

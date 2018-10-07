@@ -72,6 +72,7 @@ extension TopicDetailsViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TopicTableViewCell", for: indexPath) as! TopicTableViewCell
             cell.topicTitle.text = topic.title
+            cell.topicText.text = topic.text
             cell.topicAuthor.text = topic.username
             cell.topicTime.text = topic.time
             return cell

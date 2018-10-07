@@ -13,5 +13,14 @@ class TopicTableViewCell: UITableViewCell {
     @IBOutlet weak var topicTitle: UILabel!
     @IBOutlet weak var topicAuthor: UILabel!
     @IBOutlet weak var topicTime: UILabel!
+    @IBOutlet weak var topicText: UILabel!
+    @IBOutlet weak var containerView: UIView!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        containerView.layer.cornerRadius = 5
+        selectionStyle = .none
+    }
     
 }

@@ -10,16 +10,17 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var messageText: UILabel!
-    @IBOutlet weak var messageAuthor: UILabel!
-    @IBOutlet weak var messageTime: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var topicAuthor: UILabel!
+    @IBOutlet weak var topicTime: UILabel!
+    @IBOutlet weak var topicText: UILabel!
+    @IBOutlet weak var containerView: UIView!
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        containerView.layer.cornerRadius = 5
+         selectionStyle = .none
+    }
 
     
 }

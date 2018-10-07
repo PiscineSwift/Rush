@@ -13,11 +13,15 @@ class topicViewCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var topicTextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet weak var cellContainer: UIView!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        cellContainer.layer.cornerRadius = 5
+         selectionStyle = .none
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
