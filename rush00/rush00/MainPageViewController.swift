@@ -47,7 +47,6 @@ class MainPageViewController: UIViewController {
             }
             guard let data = data else { return }
             let dictinary = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any?]]
-            print(dictinary)
             self.convertResponse(response: dictinary)
         }).resume()
         
@@ -92,7 +91,6 @@ class MainPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "TopicDetailsViewController") {
             if let vc = segue.destination as? TopicDetailsViewController {
-                print(topics[currentRow])
                 vc.topic = topics[currentRow]
             }
         }
