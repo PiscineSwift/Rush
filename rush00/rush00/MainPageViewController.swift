@@ -60,5 +60,17 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
     }
     
-
+    @IBAction func addNewTopic(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "AddNewTopicViewController", sender: self)
+    }
+    
+    @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
+        UserDefaults.standard.set(false, forKey: "isLogin")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        
+        present(loginViewController, animated: true, completion: nil)
+        UIApplication.shared.windows[0].rootViewController = loginViewController
+    }
+    
 }

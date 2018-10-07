@@ -36,13 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         if let _ = response["code"] {
             UserDefaults.standard.set(true, forKey: "isLogin") // Set it to false when user logout
+            
             window?.rootViewController?.dismiss(animated: true, completion: nil)
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
-            let viewController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
-            window?.rootViewController = viewController
+            let mainViewController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
+            window?.rootViewController = mainViewController
         } else if let error = response["error"] {
             UserDefaults.standard.set(false, forKey: "isLogin") // Just in case
+            
             window?.rootViewController?.dismiss(animated: true, completion: nil)
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil);
+//            let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//            window?.rootViewController?.present(loginViewController, animated: true, completion: nil)
+            
             showAlert(withMessage: error)
         }
         return true
@@ -56,13 +62,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setLoginRoot() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         window?.rootViewController = viewController
     }
     
     private func setTopicsRoot() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil);
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as! UINavigationController
         window?.rootViewController = viewController
     }

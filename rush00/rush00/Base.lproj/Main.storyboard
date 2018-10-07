@@ -111,19 +111,47 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZCP-2F-ckr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WPt-CF-0w7"/>
+                    <navigationItem key="navigationItem" id="WPt-CF-0w7">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="CpF-JP-Khm">
+                            <connections>
+                                <action selector="logoutPressed:" destination="PCb-E3-xfu" id="uMC-Oq-YLB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="BzP-Fv-yUP">
+                            <connections>
+                                <action selector="addNewTopic:" destination="PCb-E3-xfu" id="9TI-i7-eYR"/>
+                                <segue destination="DDS-An-vhX" kind="show" identifier="AddNewTopicViewController" id="2jH-9c-apf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="topicsTableView" destination="cqc-8J-fHM" id="YaY-Dg-a36"/>
+                        <segue destination="dE8-37-ciG" kind="show" identifier="TopicDetailsViewController" id="6Nu-YN-dSz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwn-zn-cqj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3106.4000000000001" y="133.5832083958021"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New Topic View Controller-->
+        <scene sceneID="Cqo-F9-iPX">
+            <objects>
+                <viewController storyboardIdentifier="AddNewTopicViewController" id="DDS-An-vhX" customClass="AddNewTopicViewController" customModule="rush00" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eET-6W-dKO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="UEB-um-zQy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QT0-LD-Hdx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4132" y="-253"/>
+        </scene>
+        <!--Topic Details View Controller-->
         <scene sceneID="GRX-Ue-wT3">
             <objects>
-                <viewController id="dE8-37-ciG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopicDetailsViewController" id="dE8-37-ciG" customClass="TopicDetailsViewController" customModule="rush00" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pmg-Pl-uwR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2f-7A-mlX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3906" y="134"/>
+            <point key="canvasLocation" x="4145" y="433"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R6D-Pu-IJg">
